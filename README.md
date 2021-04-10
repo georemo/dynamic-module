@@ -15,6 +15,11 @@ Notes:
 2. Limited to older versions of systemjs. Using version '0.21.5'
 3. You have to recreate the modules in the 'projects' directory using the cli v-11.2.9
 
-Current updates:
+Extra Info:
 - for experimentation extra alternatives can be found at:
     - https://github.com/anyOpsOS/angularSystemJsRemoteLazyLoad
+
+Important Updates:
+10/04/2021
+- managed to use the latest systemjs using suggestion at 
+https://stackoverflow.com/questions/59634659/systemjs-6-x-set-register-modules-or-provide-mapping-when-dynamically-loading-mo/63917606#63917606

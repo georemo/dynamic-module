@@ -4,6 +4,7 @@ import { ModuleData } from '../models/module.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable, Compiler, Inject, ReflectiveInjector, Injector, COMPILER_OPTIONS } from '@angular/core';
 import { AddOnService } from './add-on.service';
+import { SystemJsService } from './system-js.service';
 
 import 'rxjs/add/operator/map';
 // import { filter, map } from 'rxjs/operators';
@@ -27,6 +28,7 @@ export class ModuleService {
     private compiler: Compiler,
     private http: HttpClient,
     private svAddOn: AddOnService,
+    private svSysJs: SystemJsService,
   ) {
     console.log(compiler);
   }
@@ -107,17 +109,17 @@ export class ModuleService {
 
     // now, import the new module
     return SystemJS.import(`${url}`).then((module: any) => {
-        // console.log(module);
-        return this.compiler.compileModuleAndAllComponentsAsync(module[`${moduleInfo.moduleName}`]).then(compiled => {
-            console.dir('loadModuleSystemJS/moduleInfo:', JSON.stringify(moduleInfo));
-            console.dir('loadModuleSystemJS/module:', JSON.stringify(module));
-            console.dir('loadModuleSystemJS/compiled:', JSON.stringify(compiled));
-            return module;
-        });
+      // console.log(module);
+      return this.compiler.compileModuleAndAllComponentsAsync(module[`${moduleInfo.moduleName}`]).then(compiled => {
+        console.dir('loadModuleSystemJS/moduleInfo:', JSON.stringify(moduleInfo));
+        console.dir('loadModuleSystemJS/module:', JSON.stringify(module));
+        console.dir('loadModuleSystemJS/compiled:', JSON.stringify(compiled));
+        return module;
+      });
     });
-}
+  }
 
-  loadSysJs(moduleInfo: any): Promise<any> {
+  loadSysJs1(moduleInfo: any): Promise<any> {
     console.log('starting ModuleService::loadSysJs()');
     const url = this.source + moduleInfo.location;
     const moduleName = moduleInfo.moduleName;
@@ -131,4 +133,18 @@ export class ModuleService {
       });
     });
   }
+
+  loadSysJs2(moduleInfo: any): Promise<any> {
+    const url = this.source + moduleInfo.location;
+    return this.svSysJs.register({
+      '@angular/core': AngularCore,
+      '@angular/common': AngularCommon,
+      '@angular/router': AngularRouter,
+      '@angular/platform-browser/animations': BrowserAnimations,
+      '@clr/angular': AngularClarity
+    }).then(() => {
+      return this.svSysJs.load(url);
+    });
+  }
+
 }

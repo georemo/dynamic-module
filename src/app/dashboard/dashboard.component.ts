@@ -50,7 +50,7 @@ export class DashboardComponent implements OnInit {
     private registerRoute(moduleToEnable: ModuleData): any {
         console.log('starting registerRoute()');
         // load up the umd file and register the route whenever succeeded.
-        this.moduleService.loadModuleSystemJS(moduleToEnable).then((exports) => {
+        this.moduleService.loadSysJs2(moduleToEnable).then((exports) => {
             this.routerService.createAndRegisterRoute(moduleToEnable, exports);
         },
             (err) => {

@@ -38,7 +38,8 @@
               "node_modules/@clr/ui/clr-ui.min.css"
             ],
             "scripts": [
-              "node_modules/systemjs/dist/system.js"
+              "node_modules/systemjs/dist/system.js",
+              "node_modules/systemjs/dist/extras/amd.js"
             ]
           },
           "configurations": {

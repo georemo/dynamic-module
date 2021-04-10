@@ -59,7 +59,7 @@ export class PortalComponent implements OnInit {
         //     could not be found, did you copy the umd
         //     file to ${moduleToEnable.location}?`);
         // }));
-        this.moduleService.loadModuleSystemJS(moduleToEnable).then((exports) => {
+        this.moduleService.loadSysJs2(moduleToEnable).then((exports) => {
             this.routerService.createAndRegisterRoute(moduleToEnable, exports);
         },
             (err: any) => {
