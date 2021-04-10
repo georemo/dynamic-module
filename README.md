@@ -16,4 +16,5 @@ Notes:
 3. You have to recreate the modules in the 'projects' directory using the cli v-11.2.9
 
 Current updates:
-- for experimentation extra alternatives
+- for experimentation extra alternatives can be found at:
+    - https://github.com/anyOpsOS/angularSystemJsRemoteLazyLoad
